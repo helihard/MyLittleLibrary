@@ -14,12 +14,47 @@ public class Book {
     this.author = author;
     this.year = year;
     this.edition = edition;
-    available = true;
+    this.available = true;
   }
 
   // book title getter
   public String getTitle() {
     return title;
+  }
+
+  // book title setter
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  // book author getter
+  public String getAuthor() {
+    return author;
+  }
+
+  // book author setter
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  // publishing year getter
+  public int getYear() {
+    return year;
+  }
+
+  // publishing year setter
+  public void setYear(int year) {
+    this.year = year;
+  }
+
+  // edition getter
+  public int getEdition() {
+    return edition;
+  }
+
+  // edition setter
+  public void setEdition(int edition) {
+    this.edition = edition;
   }
 
   // availability status getter
