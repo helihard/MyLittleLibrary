@@ -79,7 +79,7 @@ public class Library {
 
   // method for loaning a book
   public boolean loan(Scanner scanner, Book book) {
-    System.out.print("Do you want to loan this book? Y/N ");
+    System.out.print("This book is available for loan. Do you want to loan this book? Y/N ");
     String loanChoice = scanner.nextLine();
     if (loanChoice.equalsIgnoreCase("y")) {
       book.setAvailabilityStatus(false);
@@ -92,18 +92,18 @@ public class Library {
   // method for reserving a book
   public void reserve(Scanner scanner, Book book) {
     System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N ", book.getTitle()));
-      String reserveChoice = scanner.nextLine();
-      if (reserveChoice.equalsIgnoreCase("y")) {
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-        book.setReservations(name);
-        System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
-        System.out.println(book.getReservations());
-      }
+    String reserveChoice = scanner.nextLine();
+    if (reserveChoice.equalsIgnoreCase("y")) {
+      System.out.print("Enter your name: ");
+      String name = scanner.nextLine();
+      book.setReservations(name);
+      System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
+      System.out.println(book.getReservations());
     }
+  }
 
   // method for returning a book
-  public boolean returnBook(Scanner scanner) {
+  public void returnBook(Scanner scanner) {
     System.out.print("Enter title: ");
     String searchTerm = scanner.nextLine();
 
@@ -111,15 +111,17 @@ public class Library {
       if (book.getTitle().equalsIgnoreCase(searchTerm)) {
         if (book.getAvailabilityStatus()) {
           System.out.println(String.format("%s is already in the library.", book.getTitle()));
-          return false; 
-        } else {
+        } else if (book.getReservations().isEmpty()) {
           book.setAvailabilityStatus(true);
           System.out.println(String.format("%s was successfully returned to the library.", book.getTitle()));
-          return true;
+        } else {
+          System.out.println(String.format("%s was successfully returned to the library.", book.getTitle()));
+          System.out.println(String.format("%s, %s is now available for pickup.", book.getReservations().get(0), book.getTitle()));
+          book.getReservations().remove(0);
         }
+        return;
       }
     } 
-    System.out.println(String.format("No book by the title %s was found in the library.", searchTerm));
-    return false;  
+    System.out.println(String.format("No book by the title %s was found in the library.", searchTerm)); 
   }
 }
