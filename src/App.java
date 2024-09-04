@@ -8,7 +8,8 @@ public class App {
         System.out.println("2. Search for a book by name");
         System.out.println("3. List all available books");
         System.out.println("4. Return a book");
-        System.out.println("5. Quit");
+        System.out.println("5. Reserve a book");
+        System.out.println("6. Quit");
     }
 
     public static void main(String[] args) throws Exception {
@@ -36,6 +37,8 @@ public class App {
             } else if (input.equals("4")) {
                 myLittleLibrary.returnBook(scanner);
             } else if (input.equals("5")) {
+                myLittleLibrary.reserveBook(scanner);
+            } else if (input.equals("6")) {
                 System.out.println("Thank you for visiting the library. Welcome back anytime!");
                 scanner.close();
                 return;

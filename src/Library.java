@@ -89,7 +89,7 @@ public class Library {
     return false;
   }
 
-  // method for reserving a book
+  // method for reserving a book from search
   public void reserve(Scanner scanner, Book book) {
     System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N ", book.getTitle()));
     String reserveChoice = scanner.nextLine();
@@ -98,7 +98,6 @@ public class Library {
       String name = scanner.nextLine();
       book.setReservations(name);
       System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
-      System.out.println(book.getReservations());
     }
   }
 
@@ -123,5 +122,26 @@ public class Library {
       }
     } 
     System.out.println(String.format("No book by the title %s was found in the library.", searchTerm)); 
+  }
+
+  // method for reserving a book from menu
+  public void reserveBook(Scanner scanner) {
+    System.out.print("Enter title: ");
+    String input = scanner.nextLine();
+
+    for (Book book : books) {
+      if (book.getTitle().equalsIgnoreCase(input)) {
+        if (!book.getAvailabilityStatus()) {
+          System.out.print("Enter your username: ");
+          String userName = scanner.nextLine();
+          book.setReservations(userName);
+          System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
+        } else {
+          loan(scanner, book);
+        }
+        return;
+      }
+    } 
+    System.out.println(String.format("No book by the title %s was found in the library.", input)); 
   }
 }
