@@ -30,16 +30,16 @@ public class Library {
     System.out.println(String.format("%s, by %s (%s, %s ed.) was successfully added to the library.", title, author, year, edition));
   }
 
-  // method for searching for a book by name
+  // method for searching for a book by title
   // error handling: what if several books by same title
   public void searchBooks(Scanner scanner) {
-    String searchTerm;
+    String input;
         
     System.out.print("Enter title: ");
-    searchTerm = scanner.nextLine();
+    input = scanner.nextLine();
 
     for (Book book : books) {
-      if (book.getTitle().equalsIgnoreCase(searchTerm)) {
+      if (book.getTitle().equalsIgnoreCase(input)) {
         System.out.println("This title was found:");
         System.out.println(book);
         if (book.getAvailabilityStatus()) {
@@ -50,7 +50,7 @@ public class Library {
         return;
       } 
     }
-    System.out.println(String.format("No book by the title %s was found in the library.", searchTerm));
+    System.out.println(String.format("No book by the title %s was found in the library.", input));
   }
 
   // method for listing all available books
@@ -94,9 +94,9 @@ public class Library {
     System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N ", book.getTitle()));
     String reserveChoice = scanner.nextLine();
     if (reserveChoice.equalsIgnoreCase("y")) {
-      System.out.print("Enter your name: ");
-      String name = scanner.nextLine();
-      book.setReservations(name);
+      System.out.print("Enter your username: ");
+      String userName = scanner.nextLine();
+      book.setReservations(userName);
       System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
     }
   }
@@ -104,10 +104,10 @@ public class Library {
   // method for returning a book
   public void returnBook(Scanner scanner) {
     System.out.print("Enter title: ");
-    String searchTerm = scanner.nextLine();
+    String input = scanner.nextLine();
 
     for (Book book : books) {
-      if (book.getTitle().equalsIgnoreCase(searchTerm)) {
+      if (book.getTitle().equalsIgnoreCase(input)) {
         if (book.getAvailabilityStatus()) {
           System.out.println(String.format("%s is already in the library.", book.getTitle()));
         } else if (book.getReservations().isEmpty()) {
@@ -121,7 +121,7 @@ public class Library {
         return;
       }
     } 
-    System.out.println(String.format("No book by the title %s was found in the library.", searchTerm)); 
+    System.out.println(String.format("No book by the title %s was found in the library.", input)); 
   }
 
   // method for reserving a book from menu
