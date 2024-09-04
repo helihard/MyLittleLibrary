@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+
 public class Book {
   private String title;
   private String author;
   private int year;
   private int edition;
   private boolean available;
+  private ArrayList<String> reservations;
 
   // constructor
   public Book(String title, String author, int year, int edition) {
@@ -12,6 +15,7 @@ public class Book {
     this.year = year;
     this.edition = edition;
     this.available = true;
+    this.reservations = new ArrayList<String>();
   }
 
   // book title getter
@@ -62,6 +66,16 @@ public class Book {
   // availability status setter
   public void setAvailabilityStatus(boolean available) {
     this.available = available;
+  }
+
+  // reservations getter
+  public ArrayList<String> getReservations() {
+    return reservations;
+  }
+
+  // reservations setter
+  public void setReservations(String name) {
+    this.reservations.add(name);
   }
 
   @Override

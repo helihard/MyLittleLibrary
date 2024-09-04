@@ -42,7 +42,11 @@ public class Library {
       if (book.getTitle().equalsIgnoreCase(searchTerm)) {
         System.out.println("This title was found:");
         System.out.println(book);
-        loan(scanner, book);
+        if (book.getAvailabilityStatus()) {
+          loan(scanner, book);
+        } else {
+          reserve(scanner, book);
+        }
         return;
       } 
     }
@@ -77,16 +81,26 @@ public class Library {
   public boolean loan(Scanner scanner, Book book) {
     System.out.print("Do you want to loan this book? Y/N ");
     String loanChoice = scanner.nextLine();
-    if (loanChoice.equalsIgnoreCase("y") && book.getAvailabilityStatus()) {
+    if (loanChoice.equalsIgnoreCase("y")) {
       book.setAvailabilityStatus(false);
       System.out.println(String.format("You have successfully loaned %s.", book.getTitle()));
       return true;
-    } else if ((loanChoice.equalsIgnoreCase("y") && !book.getAvailabilityStatus())) {
-      System.out.println(String.format("%s is currently on loan.", book.getTitle()));
-      return false;
-    }
+    } 
     return false;
   }
+
+  // method for reserving a book
+  public void reserve(Scanner scanner, Book book) {
+    System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N ", book.getTitle()));
+      String reserveChoice = scanner.nextLine();
+      if (reserveChoice.equalsIgnoreCase("y")) {
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        book.setReservations(name);
+        System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
+        System.out.println(book.getReservations());
+      }
+    }
 
   // method for returning a book
   public boolean returnBook(Scanner scanner) {
