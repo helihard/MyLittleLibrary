@@ -32,3 +32,6 @@ Programmet skriver ut en meny först:
 Hur programmet ska bete sig får du hitta på själv. Tänk på följande:
 * I alternativ 2, om den boken som man söker efter finns, då ska steget efter vara att fråga användaren om den vill låna boken eller inte och fortsätta beroende på vad användaren matar in.
 * Gör strängen som toString-metoden returnerar omfattande och presenterar informationen om boken på ett tydligt sätt.
+
+2.
+Refaktorisera din kod (gör om den) genom att skapa en klass Library som innehåller all funktionalitet för ett bibliotek och ändra din main funktion så att den i stället skapar ett Library objekt som du sedan skriver kod för att testa.
