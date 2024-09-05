@@ -19,13 +19,13 @@ public class Library {
     int year, edition;
 
     System.out.print("Add a title: ");
-    title = scanner.nextLine();
+    title = scanner.nextLine().trim();
     System.out.print(String.format("Add name of author of %s: ", title));
-    author = scanner.nextLine();
+    author = scanner.nextLine().trim();
     System.out.print(String.format("Add year %s was published: ", title));
-    year = Integer.parseInt(scanner.nextLine());
+    year = Integer.parseInt(scanner.nextLine().trim());
     System.out.print(String.format("Add edition of %s: ", title));
-    edition = Integer.parseInt(scanner.nextLine());
+    edition = Integer.parseInt(scanner.nextLine().trim());
     books.add(new Book(title, author, year, edition));
     System.out.println(String.format("%s, by %s (%s, %s ed.) was successfully added to the library.", title, author, year, edition));
   }
@@ -36,7 +36,7 @@ public class Library {
     String input;
         
     System.out.print("Enter title: ");
-    input = scanner.nextLine();
+    input = scanner.nextLine().trim();
 
     for (Book book : books) {
       if (book.getTitle().equalsIgnoreCase(input)) {
@@ -62,6 +62,8 @@ public class Library {
       }
     }
 
+    // for future: read up on streams
+
     if (books.isEmpty()) {
       System.out.println("The library does not contain any books.");
     } else if (availableBooks.isEmpty()) {
@@ -80,7 +82,7 @@ public class Library {
   // method for loaning a book
   public boolean loan(Scanner scanner, Book book) {
     System.out.print("This book is available for loan. Do you want to loan this book? Y/N ");
-    String loanChoice = scanner.nextLine();
+    String loanChoice = scanner.nextLine().trim();
     if (loanChoice.equalsIgnoreCase("y")) {
       book.setAvailabilityStatus(false);
       System.out.println(String.format("You have successfully loaned %s.", book.getTitle()));
@@ -92,10 +94,10 @@ public class Library {
   // method for reserving a book from search
   public void reserve(Scanner scanner, Book book) {
     System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N ", book.getTitle()));
-    String reserveChoice = scanner.nextLine();
+    String reserveChoice = scanner.nextLine().trim();
     if (reserveChoice.equalsIgnoreCase("y")) {
       System.out.print("Enter your username: ");
-      String userName = scanner.nextLine();
+      String userName = scanner.nextLine().trim();
       book.setReservations(userName);
       System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
     }
@@ -104,7 +106,7 @@ public class Library {
   // method for returning a book
   public void returnBook(Scanner scanner) {
     System.out.print("Enter title: ");
-    String input = scanner.nextLine();
+    String input = scanner.nextLine().trim();
 
     for (Book book : books) {
       if (book.getTitle().equalsIgnoreCase(input)) {
@@ -125,15 +127,16 @@ public class Library {
   }
 
   // method for reserving a book from menu
+  // for future: combine reserve methods?
   public void reserveBook(Scanner scanner) {
     System.out.print("Enter title: ");
-    String input = scanner.nextLine();
+    String input = scanner.nextLine().trim();
 
     for (Book book : books) {
       if (book.getTitle().equalsIgnoreCase(input)) {
         if (!book.getAvailabilityStatus()) {
           System.out.print("Enter your username: ");
-          String userName = scanner.nextLine();
+          String userName = scanner.nextLine().trim();
           book.setReservations(userName);
           System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
         } else {
