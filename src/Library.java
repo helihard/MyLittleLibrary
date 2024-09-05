@@ -45,7 +45,7 @@ public class Library {
         if (book.getAvailabilityStatus()) {
           loan(scanner, book);
         } else {
-          reserve(scanner, book);
+          System.out.println(reserve(scanner, book));
         }
         return;
       } 
@@ -92,15 +92,16 @@ public class Library {
   }
 
   // method for reserving a book from search
-  public void reserve(Scanner scanner, Book book) {
+  public String reserve(Scanner scanner, Book book) {
     System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N ", book.getTitle()));
     String reserveChoice = scanner.nextLine().trim();
     if (reserveChoice.equalsIgnoreCase("y")) {
-      System.out.print("Enter your username: ");
+      System.out.println("Enter your username: ");
       String userName = scanner.nextLine().trim();
       book.setReservations(userName);
-      System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
+      return String.format("%s was successfully reserved.", book.getTitle());
     }
+    return String.format("%s was not reserved.", book.getTitle());
   }
 
   // method for returning a book
@@ -127,7 +128,7 @@ public class Library {
   }
 
   // method for reserving a book from menu
-  // for future: combine reserve methods?
+  // for future: combine reserve and reserveBook methods?
   public void reserveBook(Scanner scanner) {
     System.out.print("Enter title: ");
     String input = scanner.nextLine().trim();
