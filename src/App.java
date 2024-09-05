@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// for future: error handling (f ex empty string input)
 public class App {
 
     // method for printing main menu
