@@ -5,6 +5,9 @@ public class App {
 
     // method for printing main menu
     static void printMenu() {
+        System.out.println("----------------------------");
+        System.out.println("My Little Library");
+        System.out.println("----------------------------");
         System.out.println("1. Add a book to the library");
         System.out.println("2. Search for a book by name");
         System.out.println("3. List all available books");
