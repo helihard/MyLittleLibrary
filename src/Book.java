@@ -8,7 +8,12 @@ public class Book {
   private boolean available;
   private ArrayList<String> reservations;
 
-  // constructor
+  // empty constructor
+  public Book() {
+    
+  }
+
+  // constructor with arguments
   public Book(String title, String author, int year, int edition) {
     this.title = title;
     this.author = author;
