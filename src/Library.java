@@ -18,16 +18,16 @@ public class Library {
     String title, author;
     int year, edition;
 
-    System.out.print("Add a title: ");
+    System.out.println("Add a title:");
     title = scanner.nextLine().trim();
-    System.out.print(String.format("Add name of author of %s: ", title));
+    System.out.println(String.format("Add name of author of %s:", title));
     author = scanner.nextLine().trim();
-    System.out.print(String.format("Add year %s was published: ", title));
+    System.out.println(String.format("Add year %s was published:", title));
     year = Integer.parseInt(scanner.nextLine().trim());
-    System.out.print(String.format("Add edition of %s: ", title));
+    System.out.println(String.format("Add edition of %s:", title));
     edition = Integer.parseInt(scanner.nextLine().trim());
     books.add(new Book(title, author, year, edition));
-    System.out.println(String.format("%s, by %s (%s, %s ed.) was successfully added to the library.", title, author, year, edition));
+    System.out.println(String.format("%s, by %s (%s, %s ed.), was successfully added to the library.", title, author, year, edition));
   }
 
   // method for searching for a book by title
@@ -35,7 +35,7 @@ public class Library {
   public void searchBooks(Scanner scanner) {
     String input;
         
-    System.out.print("Enter title: ");
+    System.out.println("Enter title:");
     input = scanner.nextLine().trim();
 
     for (Book book : books) {
@@ -50,7 +50,7 @@ public class Library {
         return;
       } 
     }
-    System.out.println(String.format("No book by the title %s was found in the library.", input));
+    System.out.println(String.format("No book by the title %s was found to belong to the library.", input));
   }
 
   // method for listing all available books
@@ -65,7 +65,7 @@ public class Library {
     // for future: read up on streams
 
     if (books.isEmpty()) {
-      System.out.println("The library does not contain any books.");
+      System.out.println("The library does not yet have any books.");
     } else if (availableBooks.isEmpty()) {
       System.out.println("All books are currently on loan.");
     } else if (availableBooks.size() == 1) {
@@ -81,9 +81,9 @@ public class Library {
 
   // method for loaning a book
   public boolean loan(Scanner scanner, Book book) {
-    System.out.print("This book is available for loan. Do you want to loan this book? Y/N ");
-    String loanChoice = scanner.nextLine().trim();
-    if (loanChoice.equalsIgnoreCase("y")) {
+    System.out.println("This book is available for loan. Do you want to loan this book? Y/N");
+    String input = scanner.nextLine().trim();
+    if (input.equalsIgnoreCase("y")) {
       book.setAvailabilityStatus(false);
       System.out.println(String.format("You have successfully loaned %s.", book.getTitle()));
       return true;
@@ -93,10 +93,10 @@ public class Library {
 
   // method for reserving a book from search
   public String reserve(Scanner scanner, Book book) {
-    System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N ", book.getTitle()));
-    String reserveChoice = scanner.nextLine().trim();
-    if (reserveChoice.equalsIgnoreCase("y")) {
-      System.out.println("Enter your username: ");
+    System.out.println(String.format("%s is currently on loan. Do you want to reserve this book? Y/N", book.getTitle()));
+    String input = scanner.nextLine().trim();
+    if (input.equalsIgnoreCase("y")) {
+      System.out.println("Enter your username:");
       String userName = scanner.nextLine().trim();
       book.setReservations(userName);
       return String.format("%s was successfully reserved.", book.getTitle());
@@ -106,7 +106,7 @@ public class Library {
 
   // method for returning a book
   public void returnBook(Scanner scanner) {
-    System.out.print("Enter title: ");
+    System.out.println("Enter title:");
     String input = scanner.nextLine().trim();
 
     for (Book book : books) {
@@ -124,19 +124,19 @@ public class Library {
         return;
       }
     } 
-    System.out.println(String.format("No book by the title %s was found in the library.", input)); 
+    System.out.println(String.format("No book by the title %s was found to belong to the library.", input)); 
   }
 
   // method for reserving a book from menu
   // for future: combine reserve and reserveBook methods?
   public void reserveBook(Scanner scanner) {
-    System.out.print("Enter title: ");
+    System.out.println("Enter title:");
     String input = scanner.nextLine().trim();
 
     for (Book book : books) {
       if (book.getTitle().equalsIgnoreCase(input)) {
         if (!book.getAvailabilityStatus()) {
-          System.out.print("Enter your username: ");
+          System.out.println("Enter your username:");
           String userName = scanner.nextLine().trim();
           book.setReservations(userName);
           System.out.println(String.format("%s was successfully reserved.", book.getTitle()));
@@ -146,6 +146,6 @@ public class Library {
         return;
       }
     } 
-    System.out.println(String.format("No book by the title %s was found in the library.", input)); 
+    System.out.println(String.format("No book by the title %s was found to belong to the library.", input)); 
   }
 }
